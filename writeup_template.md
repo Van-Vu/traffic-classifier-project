@@ -93,8 +93,8 @@ My final model consisted of the following layers:
 
 #### 3. Iteractive process to train my model:
 I used Lenet architecture with following hyperparameters:
--AdamOptimizer
--BATCH_SIZE = 128
+- AdamOptimizer
+- BATCH_SIZE = 128 (later change to 100)
 
 ##### Iterative training 1
 - EPOCHS = 50
@@ -197,7 +197,7 @@ I used Lenet architecture with following hyperparameters:
 - **Test Accuracy** = 0.951
 - **Comment:** remove one more fully-connected layer doesn't improve
 
-##### Iterative training 9 :boom::boom::boom::boom::boom:
+##### Iterative training 9
 - EPOCHS = 50
 - Learningrate = 0.001
 - **Image type: Gray**
@@ -209,7 +209,6 @@ I used Lenet architecture with following hyperparameters:
 ![alt text][image12]
 - **Test Accuracy** = 0.951
 - **Comment:** use **Gray** image with inherited layers from RBG, test accuracy is 95.1 and **validation accuracy** is the highest **97.6**
-:boom::boom::boom::boom::boom: **I choose this model**
 
 ##### Iterative training 10
 - EPOCHS = 50
@@ -263,7 +262,7 @@ I used Lenet architecture with following hyperparameters:
 - FC3=500 → 200
 ![alt text][image16]
 - **Test Accuracy** = 0.932
-- **Comment:** introduce dropout and increase epoch, even worse. Accuracy still is unstable
+- **Comment:** introduce dropout and increase epoch, even worse. Accuracy is still unstable
 
 ##### Iterative training 14
 - EPOCHS = 200
@@ -277,7 +276,7 @@ I used Lenet architecture with following hyperparameters:
 - FC3=500 → 200
 ![alt text][image17]
 - **Test Accuracy** = 0.949
-- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+- **Comment:** introduce *dropout* and increase epoch more, not bad but not as good as no dropout
 
 
 ##### Iterative training 15
@@ -289,11 +288,11 @@ I used Lenet architecture with following hyperparameters:
 - convo2= 20
 - FC1=500 → 200
 ![alt text][image21]
-Validation Accuracy = 0.967
-Training Accuracy = 1.000
-Test Accuracy = 0.951
+- **Validation Accuracy** = 0.967
+- **Training Accuracy** = 1.000
+- **Test Accuracy** = 0.951
 
-- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+- **Comment:** tweak the convolution layers looks promising. The model is overfitting although dropout is introduced
 
 ##### Iterative training 16
 - EPOCHS = 50
@@ -304,64 +303,67 @@ Test Accuracy = 0.951
 - convo2= 40
 - FC1=1000 → 300
 ![alt text][image22]
-Validation Accuracy = 0.975
-Training Accuracy = 1.000
-Test Accuracy = 0.953
-- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+- **Validation Accuracy** = 0.975
+- **Training Accuracy** = 1.000
+- **Test Accuracy** = 0.953
+
+- **Comment:** switch the *convolution layers* (20, 40) increases the test result a little bit. The model is still overfitting
 
 ##### Iterative training 17
-EPOCHS = 30
-BATCH_SIZE = 128
-rate = 0.001
-DROPOUT 0.5
-convo1=20
-convo2= 40
-FC1=1000 → 300
+- EPOCHS = 30
+- BATCH_SIZE = 128
+- Learningrate = 0.001
+- DROPOUT 0.5
+- convo1=20
+- convo2= 40
+- FC1=1000 → 300
 ![alt text][image23]
-Validation Accuracy = 0.977
-Training Accuracy = 1.000
-Test Accuracy = 0.951
-- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+- **Validation Accuracy** = 0.977
+- **Training Accuracy** = 1.000
+- **Test Accuracy** = 0.951
+- **Comment:** reduce the *Epoch* to 30. The model is still overfitting
 
 ##### Iterative training 18
-AUGMENTED
-EPOCHS = 30
-BATCH_SIZE = 128
-Learning rate = 0.001
-dropout=0.5
-convo1=20
-convo2= 40
-FC1=1000 → 300
+- AUGMENTED
+- EPOCHS = 30
+- BATCH_SIZE = 128
+- Learning rate = 0.001
+- dropout=0.5
+- convo1=20
+- convo2= 40
+- FC1=1000 → 300
 ![alt text][image24]
-Validation Accuracy = 0.965
-Training Accuracy = 1.000
-Test Accuracy = 0.955
-- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+- **Validation Accuracy** = 0.965
+- **Training Accuracy** = 1.000
+- **Test Accuracy** = 0.955
+- **Comment:** use *balanced augmented* images. The model is still overfitting but test accuracy increases a little bit
 
-##### Iterative training 19
-EPOCHS = 50
-BATCH_SIZE = 100
-rate = 0.001
-DROPOUT 0.5
-convo1=20
-convo2= 40
-FC1=1000 → 300
+##### Iterative training 19  :boom::boom::boom::boom::boom:
+- EPOCHS = 50
+- BATCH_SIZE = 100
+- rate = 0.001
+- DROPOUT 0.5
+- convo1=20
+- convo2= 40
+- FC1=1000 → 300
 ![alt text][image25]
-Validation Accuracy = 0.978
-Training Accuracy = 1.000
-Test Accuracy = 0.962
-- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+- **Validation Accuracy** = 0.978
+- **Training Accuracy** = 1.000
+- **Test Accuracy** = 0.962
+- **Comment:** drop the *augmented* images. Test accuracy is highest. However, model is overfitting
+:boom::boom::boom::boom::boom: **I choose this model as the final model**
 
 #### Conclusion:
 - Introduce more epochs doesn't mean the network gets better
-- Dropout somehow doesn't seem to work
-- This architect clearly reaches its peak around 95%, in order to increase the accuracy, better image preprocessing (augmenting, generate fake image ...) could be useful
+- Dropout seems working to reduce overfitting
+- This architect clearly reaches its peak around 96%-97&, in order to increase the accuracy, better image preprocessing (rotate, projection ...) could be useful
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were in Iterative training 9:
-* Validation set Accuracy = 0.976
-* Test Accuracy = 0.951
+- **Validation Accuracy** = 0.978
+- **Training Accuracy** = 1.000
+- **Test Accuracy** = 0.962
 
 ### Test a Model on New Images
 
@@ -371,7 +373,7 @@ Here are five German traffic signs that I found on the web:
 
 ![alt text][image18]
 
-The fourth image might be difficult to classify because of the light and blurness of the sign
+The first image might be difficult to classify because of the light and blurness of the sign
 
 #### 2. The model's predictions on these new traffic signs
 
@@ -381,56 +383,61 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Children crossing      		| Children crossing   									| 
+| Dangerous curve to the right	      		| General caution				 				|
 | Ahead only     			| Ahead only 										|
 | Turn right ahead					| Turn right ahead											|
-| Dangerous curve to the right	      		| No passing for vehicle over	3.5 metric tons				 				|
+| Children crossing      		| Children crossing   									| 
 | Keep right			| Keep right      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This lower than the accuracy on the test set of 0.951
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This is lower than the accuracy on the test set of 0.962
 
 #### 3. 5 softmax probabilities for each prediction
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 17th cell of the Ipython notebook.
 
-For the first image, the model is quite sure that this is a Children crossing sign (probability of 1)
+For the first image, the model is quite sure that this is a 'General cautions' sign (probability of 0.97). Other probabilities are not too low. However all of 5 highest prob are incorrect
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 1         			| Children crossing   									| 
-| 1.63602217e-22     				| Right-of-way at the next intersection 										|
-| 3.37982091e-23					| End of no passing											|
-| 3.62312691e-24	      			| Beware of ice/snow					 				|
-| 2.72396806e-24				    | Road narrows on the right      							|
-
+| 0.97         			| General caution   									| 
+| 2.88549475e-02     				| Right-of-way at the next intersection 										|
+| 3.21525469e-04					| Priority road											|
+| 2.70083819e-05	      			| Speed limit (30km/h)					 				|
+| 4.84815075e-07				    | End of speed limit (80km/h)      							|
 
 For the second image, the model is really sure that this is a Ahead only sign (probability of 1) and there's no other classification
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1         			| Ahead only   									| 
-| 0     				| all other classes 										|
+| 2.14249171e-32     				| Turn right ahead 										|
+| 1.04943693e-34     				| Priority road 										|
+| 1.74392508e-35     				| Road work 										|
+| 1.71017388e-36     				| Dangerous curve to the right 										|
 
-For the third image, the model is quite sure that this is a Children crossing sign (probability of 1) 
+
+For the third image, the model is quite sure that this is a Turn right ahead sign (probability of 1)
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1         			| Turn right ahead   									| 
-| 3.75329974e-38     				| Speed limit (100km/h) 										|
-| 1.86314262e-38					| Keep right											|
-| 0	      			| all other classes					 				|
+| 3.87683199e-23     				| Stop        |
+| 1.84349099e-28					| Go straight or left|
+| 2.72228731e-30	      			| Ahead only|
+| 9.72755253e-32				    | Keep left|
 
-For the fourth image, the model is quite sure that this is a 'No passing for vehicles over 3.5 metric tons' sign (probability of 0.979). Other probabilities are not too low. However all of 5 highest prob are incorrect
+
+For the fourth image, the model is quite sure that this is a Children crossing sign (probability of 1) 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 0.979         			| No passing for vehicles over 3.5 metric tons   									| 
-| 1.08527457e-02     				| Right-of-way at the next intersection 										|
-| 6.27199840e-03					| Speed limit (80km/h)											|
-| 2.46640365e-03	      			| Turn right ahead					 				|
-| 3.22315173e-04				    | Wild animals crossing      							|
+| 1         			| Children crossing| 
+| 9.29654183e-12     				| Bicycles crossing|
+| 3.86336101e-19					| Speed limit (60km/h)|
+| 2.78409607e-20					| Priority road|
+| 1.41634162e-20					| Speed limit (120km/h)|
 
-For the fifth image, the model is really sure that this is a Keep right sign (probability of 1) and there's no other classification 
+For the fifth image, the model is 100% sure that this is a Keep right sign (probability of 1) and there's no other classification 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -441,9 +448,9 @@ For the fifth image, the model is really sure that this is a Keep right sign (pr
 ### Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
-- I choose to visualize the convolution layer of the fourth image that was incorrectly identify above
+- I choose to visualize the convolution layer of the first image that was incorrectly identify above
 - The model can clearly identify the boundary of the sign
 - One feature is blackout
-- The model has difficulty in identifying the sign symbol at the center, that's why the prediction varies from speed class to vehicle to turning sign
+- The model has difficulty in identifying the sign symbol at the center, that's why the prediction varies from speed class to turning sign and finally end up at General caution (which only has a line at the center)
 
 ![alt text][image20]
