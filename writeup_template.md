@@ -59,10 +59,14 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 ### Design and Test a Model Architecture
 
 #### 1. Pre-preprocessed the image data
-- As a first step, I decided to convert the images to grayscale because it gives better accuracy from my experiment below, it's also inline with Yan Lecun [paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf):"The ConvNet was trained with full supervision on the color images of the GTSRB dataset and reached 98.97% accuracy on the phase 1 test set. After the end of phase 1, additional experiments with grayscale images established a new record accuracy of 99.17%"
+- Since the dataset is unbalance, I want to make up data for the missing images to make it balance (the code can be found in 4th and 5th block)
+- Essentially the logic is to find the max number of images separated by class then create new image in other classes so that it could reach around that max number
+- I create new images by randomly generate brightness of the image
+
+- As the second step, I decided to convert the images to grayscale because it gives better accuracy from my experiment below, it's also inline with Yan Lecun [paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf):"The ConvNet was trained with full supervision on the color images of the GTSRB dataset and reached 98.97% accuracy on the phase 1 test set. After the end of phase 1, additional experiments with grayscale images established a new record accuracy of 99.17%"
 It also helps to reduce the training time
 
-- Here is an example of a traffic sign image before and after grayscaling then normalized the image data
+- Here is an example of a traffic sign image going through the pre-process pipeline
 
 ![alt text][image3]
 
@@ -78,16 +82,15 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x1 Gray image   							| 
-| Convolution 5x5     	| 1x1 stride, 'VALID' padding, outputs 28x28x40	|
-| RELU					|												|
+| Convolution 5x5     	| 1x1 stride, 'VALID' padding, outputs 28x28x20	|
+| RELU					| Activation									|
 | Max pooling	      	| 2x2 stride,  outputs 14x14x40 				|
-| Convolution 5x5     	| 1x1 stride, 'VALID' padding, outputs 10x10x64	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 5x5x64   				|
-| Flatten		      	| output: 1600					   				|
-| Fully connected		| output: 1000 									|
-| Fully connected		| output: 500  									|
-| Fully connected		| output: 200  									|
+| Convolution 5x5     	| 1x1 stride, 'VALID' padding, outputs 10x10x40	|
+| RELU					| Activation									|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x40   				|
+| Flatten		      	| output: 1000					   				|
+| Fully connected		| output: 300 									|
+| Dropout		| keep_prob: 0.5  									|
 | Softmax				| logits: 43   									|
 
 
@@ -351,14 +354,15 @@ I used Lenet architecture with following hyperparameters:
 - **Training Accuracy** = 1.000
 - **Test Accuracy** = 0.962
 - **Comment:** drop the *augmented* images. Test accuracy is highest. However, model is overfitting
-:boom::boom::boom::boom::boom: **I choose this model as the final model**
+
+:boom::boom::boom::boom::boom: **I choose this as the final model**
 
 #### Conclusion:
 - Introduce more epochs doesn't mean the network gets better
-- Dropout seems working to reduce overfitting
+- Dropout seems working to reduce overfitting but not apparent in this model
 - This architect clearly reaches its peak around 96%-97&, in order to increase the accuracy, better image preprocessing (rotate, projection ...) could be useful
 
-#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated.
 
 My final model results were in Iterative training 9:
 - **Validation Accuracy** = 0.978
