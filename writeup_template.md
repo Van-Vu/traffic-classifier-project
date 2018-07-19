@@ -54,7 +54,7 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 ![alt text][image1]
 
-![alt text][image2]
+![alt text][image2]{:width="500px"}
 
 ### Design and Test a Model Architecture
 
@@ -353,14 +353,15 @@ I used Lenet architecture with following hyperparameters:
 - **Validation Accuracy** = 0.978
 - **Training Accuracy** = 1.000
 - **Test Accuracy** = 0.962
-- **Comment:** drop the *augmented* images. Test accuracy is highest. However, model is overfitting
+- **Comment:** drop the *augmented* images. Test accuracy is highest. However, model is still overfitting
 
 :boom::boom::boom::boom::boom: **I choose this as the final model**
 
 #### Conclusion:
 - Introduce more epochs doesn't mean the network gets better
 - Dropout seems working to reduce overfitting but not apparent in this model
-- This architect clearly reaches its peak around 96%-97&, in order to increase the accuracy, better image preprocessing (rotate, projection ...) could be useful
+- This architect clearly reaches its peak around 95%-96&, in order to increase the accuracy, better image preprocessing (rotate, projection ...) could be useful
+- After adopting Training accuracy from iterative training 15, I can clearly see the model is overfitting. In an attempt to fight this symptom, I decrease the convo layers, remove fully-connected, decrease epochs, use Augmented data ... but those changes don't seem to work. Again, better preprocessing could be a useful tool
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated.
 
@@ -409,7 +410,7 @@ For the first image, the model is quite sure that this is a 'General cautions' s
 | 2.70083819e-05	      			| Speed limit (30km/h)					 				|
 | 4.84815075e-07				    | End of speed limit (80km/h)      							|
 
-For the second image, the model is really sure that this is a Ahead only sign (probability of 1) and there's no other classification
+For the second image, the model is really sure that this is a Ahead only sign (probability of 1). Other classifications are very low
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -420,7 +421,7 @@ For the second image, the model is really sure that this is a Ahead only sign (p
 | 1.71017388e-36     				| Dangerous curve to the right 										|
 
 
-For the third image, the model is quite sure that this is a Turn right ahead sign (probability of 1)
+For the third image, the model is quite sure that this is a Turn right ahead sign (probability of 1). Other classifications are very low
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -431,7 +432,7 @@ For the third image, the model is quite sure that this is a Turn right ahead sig
 | 9.72755253e-32				    | Keep left|
 
 
-For the fourth image, the model is quite sure that this is a Children crossing sign (probability of 1) 
+For the fourth image, the model is quite sure that this is a Children crossing sign (probability of 1). Other classifications are very low
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -449,12 +450,12 @@ For the fifth image, the model is 100% sure that this is a Keep right sign (prob
 | 0     				| all other classes 										|
 
 
-### Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
+### Visualizing the Neural Network
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 - I choose to visualize the convolution layer of the first image that was incorrectly identify above
 - The model can clearly identify the boundary of the sign
 - One feature is blackout
-- The model has difficulty in identifying the sign symbol at the center, that's why the prediction varies from speed class to turning sign and finally end up at General caution (which only has a line at the center)
+- The model has difficulty in identifying the sign symbol at the center, that's why the prediction varies from speed class to turning sign and finally end up at General caution (which literally has a line, exclamation mark, at the center)
 
 ![alt text][image20]
