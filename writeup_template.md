@@ -22,6 +22,11 @@
 [image18]: https://github.com/Van-Vu/car/blob/master/CarND-Traffic-Sign-Classifier-Project/writeup/random_images.jpg "random image"
 [image19]: https://github.com/Van-Vu/car/blob/master/CarND-Traffic-Sign-Classifier-Project/writeup/random_images_result.jpg "random image result"
 [image20]: https://github.com/Van-Vu/car/blob/master/CarND-Traffic-Sign-Classifier-Project/writeup/feature_map1.jpg "feature map Convo1"
+[image21]: https://github.com/Van-Vu/traffic-classifier-project/blob/master/writeup/New%20folder/50E001Graycv1_40cv2_20fc1_200_dropout05.jpg "feature map Convo1"
+[image22]: https://github.com/Van-Vu/traffic-classifier-project/blob/master/writeup/New%20folder/50E001Graycv1_20cv2_40fc1_300_dropout05.jpg "feature map Convo1"
+[image23]: https://github.com/Van-Vu/traffic-classifier-project/blob/master/writeup/New%20folder/30E001Graycv1_20cv2_40fc1_300_dropout05.jpg "feature map Convo1"
+[image24]: https://github.com/Van-Vu/traffic-classifier-project/blob/master/writeup/New%20folder/30E001Graycv1_20cv2_40fc1_300_dropout05_augmented.jpg "feature map Convo1"
+[image25]: https://github.com/Van-Vu/traffic-classifier-project/blob/master/writeup/New%20folder/50E001Graycv1_20cv2_40fc1_300_dropout05_augmented_batchsize100.jpg "feature map Convo1"
 
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
@@ -272,6 +277,79 @@ I used Lenet architecture with following hyperparameters:
 - FC3=500 → 200
 ![alt text][image17]
 - **Test Accuracy** = 0.949
+- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+
+
+##### Iterative training 15
+- EPOCHS = 50
+- Learningrate = 0.001
+- Image type: Gray
+- DROPOUT 0.5
+- convo1=40
+- convo2= 20
+- FC1=500 → 200
+![alt text][image21]
+Validation Accuracy = 0.967
+Training Accuracy = 1.000
+Test Accuracy = 0.951
+
+- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+
+##### Iterative training 16
+- EPOCHS = 50
+- Learningrate = 0.001
+- Image type: Gray
+- DROPOUT 0.5
+- convo1=20
+- convo2= 40
+- FC1=1000 → 300
+![alt text][image22]
+Validation Accuracy = 0.975
+Training Accuracy = 1.000
+Test Accuracy = 0.953
+- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+
+##### Iterative training 17
+EPOCHS = 30
+BATCH_SIZE = 128
+rate = 0.001
+DROPOUT 0.5
+convo1=20
+convo2= 40
+FC1=1000 → 300
+![alt text][image23]
+Validation Accuracy = 0.977
+Training Accuracy = 1.000
+Test Accuracy = 0.951
+- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+
+##### Iterative training 18
+AUGMENTED
+EPOCHS = 30
+BATCH_SIZE = 128
+Learning rate = 0.001
+dropout=0.5
+convo1=20
+convo2= 40
+FC1=1000 → 300
+![alt text][image24]
+Validation Accuracy = 0.965
+Training Accuracy = 1.000
+Test Accuracy = 0.955
+- **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
+
+##### Iterative training 19
+EPOCHS = 50
+BATCH_SIZE = 100
+rate = 0.001
+DROPOUT 0.5
+convo1=20
+convo2= 40
+FC1=1000 → 300
+![alt text][image25]
+Validation Accuracy = 0.978
+Training Accuracy = 1.000
+Test Accuracy = 0.962
 - **Comment:** introduce dropout and increase epoch more, not bad but not as good as no dropout
 
 #### Conclusion:
