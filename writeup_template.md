@@ -33,7 +33,7 @@
 ---
 ### Writeup / README
 
-#### Here is a link to my [project code](https://github.com/Van-Vu/car/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Classifier_EC2.ipynb)
+#### Here is a link to my [project code](https://github.com/Van-Vu/traffic-classifier-project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
@@ -360,12 +360,12 @@ I used Lenet architecture with following hyperparameters:
 #### Conclusion:
 - Introduce more epochs doesn't mean the network gets better
 - Dropout seems working to reduce overfitting but not apparent in this model
-- This architect clearly reaches its peak around 95%-96&, in order to increase the accuracy, better image preprocessing (rotate, projection ...) could be useful
+- This model clearly reaches its peak around 95%-96&, in order to increase the accuracy, better image preprocessing (rotate, projection ...) could be useful
 - After adopting Training accuracy from iterative training 15, I can clearly see the model is overfitting. In an attempt to fight this symptom, I decrease the convo layers, remove fully-connected, decrease epochs, use Augmented data ... but those changes don't seem to work. Again, better preprocessing could be a useful tool
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated.
 
-My final model results were in Iterative training 9:
+My final model results were in Iterative training 19:
 - **Validation Accuracy** = 0.978
 - **Training Accuracy** = 1.000
 - **Test Accuracy** = 0.962
