@@ -54,7 +54,7 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 ![alt text][image1]
 
-![alt text][image2]{:width="500px"}
+<img src="https://github.com/Van-Vu/traffic-classifier-project/blob/master/writeup/distribution2.jpg" alt="distribution 2" width="500px"/>
 
 ### Design and Test a Model Architecture
 
